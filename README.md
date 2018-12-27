@@ -1,3 +1,3 @@
 # fmSegmentControl
 
-![image]( https://github.com/ljheee/HexTransform/blob/master/abc.jpg)
+![image]( https://github.com/SYkehaoran/fmSegmentControl/blob/master/segmentControll.gif)
