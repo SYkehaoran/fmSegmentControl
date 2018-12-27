@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "fmSegmentedControl.h"
 @interface ViewController ()
 
 @end
@@ -16,7 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    fmSegmentedControl *segmentedControl = [[fmSegmentedControl alloc] initWithFrame:CGRectMake(0, 100, UIScreen.mainScreen.bounds.size.width, 35)];
+    [self.view addSubview:segmentedControl];
+    //    segmentedControl.sepatatorColor = [UIColor blueColor];
+//    segmentedControl.sectionTitles = @[@"近1月",@"近3月",@"近6月",@"近1年",@"近3年",@""];
+    segmentedControl.sectionTitles = @[@"业绩走势",@"净值估算"];
+    
+    segmentedControl.themeColor = [UIColor redColor];
+    
+    segmentedControl.indicatorPosition = IndicatorPositionTop;
+    segmentedControl.fillSelectedTextColor = [UIColor blackColor];
+    //    UIView *topLine = [[UIView alloc] init];
+    //    [segmentedControl insertSubview:topLine atIndex:0];
+    //    topLine.frame = CGRectMake(0, 0, segmentedControl.frame.size.width, 1);
+    //    topLine.backgroundColor = [UIColor blueColor];
 }
 
 

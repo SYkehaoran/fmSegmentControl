@@ -15,6 +15,8 @@
 		A632828F21D4B8EF00E6B8B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A632828E21D4B8EF00E6B8B0 /* main.m */; };
 		A632829921D4B8EF00E6B8B0 /* fmSegmentControllTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A632829821D4B8EF00E6B8B0 /* fmSegmentControllTestTests.m */; };
 		A63282A421D4B8EF00E6B8B0 /* fmSegmentControllTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A63282A321D4B8EF00E6B8B0 /* fmSegmentControllTestUITests.m */; };
+		A63282B621D4B92A00E6B8B0 /* fmSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A63282B421D4B92A00E6B8B0 /* fmSegmentedControl.m */; };
+		A63282B721D4B92A00E6B8B0 /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = A63282B521D4B92A00E6B8B0 /* NSArray+Functional.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		A632829F21D4B8EF00E6B8B0 /* fmSegmentControllTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fmSegmentControllTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A63282A321D4B8EF00E6B8B0 /* fmSegmentControllTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fmSegmentControllTestUITests.m; sourceTree = "<group>"; };
 		A63282A521D4B8EF00E6B8B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A63282B221D4B92A00E6B8B0 /* fmSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmSegmentedControl.h; sourceTree = "<group>"; };
+		A63282B321D4B92A00E6B8B0 /* NSArray+Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Functional.h"; sourceTree = "<group>"; };
+		A63282B421D4B92A00E6B8B0 /* fmSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmSegmentedControl.m; sourceTree = "<group>"; };
+		A63282B521D4B92A00E6B8B0 /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Functional.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 		A632827321D4B8ED00E6B8B0 = {
 			isa = PBXGroup;
 			children = (
+				A63282B121D4B91500E6B8B0 /* segmentControll */,
 				A632827E21D4B8ED00E6B8B0 /* fmSegmentControllTest */,
 				A632829721D4B8EF00E6B8B0 /* fmSegmentControllTestTests */,
 				A63282A221D4B8EF00E6B8B0 /* fmSegmentControllTestUITests */,
@@ -130,6 +137,17 @@
 				A63282A521D4B8EF00E6B8B0 /* Info.plist */,
 			);
 			path = fmSegmentControllTestUITests;
+			sourceTree = "<group>";
+		};
+		A63282B121D4B91500E6B8B0 /* segmentControll */ = {
+			isa = PBXGroup;
+			children = (
+				A63282B221D4B92A00E6B8B0 /* fmSegmentedControl.h */,
+				A63282B421D4B92A00E6B8B0 /* fmSegmentedControl.m */,
+				A63282B321D4B92A00E6B8B0 /* NSArray+Functional.h */,
+				A63282B521D4B92A00E6B8B0 /* NSArray+Functional.m */,
+			);
+			path = segmentControll;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,8 +281,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A632828421D4B8ED00E6B8B0 /* ViewController.m in Sources */,
+				A63282B721D4B92A00E6B8B0 /* NSArray+Functional.m in Sources */,
 				A632828F21D4B8EF00E6B8B0 /* main.m in Sources */,
 				A632828121D4B8ED00E6B8B0 /* AppDelegate.m in Sources */,
+				A63282B621D4B92A00E6B8B0 /* fmSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
