@@ -19,8 +19,7 @@
     fmSegmentedControl *segmentedControl = [[fmSegmentedControl alloc] initWithFrame:CGRectMake(0, 100, UIScreen.mainScreen.bounds.size.width, 35)];
     [self.view addSubview:segmentedControl];
     //    segmentedControl.sepatatorColor = [UIColor blueColor];
-//    segmentedControl.sectionTitles = @[@"近1月",@"近3月",@"近6月",@"近1年",@"近3年",@""];
-    segmentedControl.sectionTitles = @[@"业绩走势",@"净值估算"];
+    segmentedControl.sectionTitles = @[@"近1月",@"近3月",@"近6月",@"近1年",@"近3年",@""];
     
     segmentedControl.themeColor = [UIColor redColor];
     
