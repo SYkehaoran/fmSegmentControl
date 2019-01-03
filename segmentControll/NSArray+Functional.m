@@ -11,6 +11,8 @@
 @implementation NSArray (Functional)
 
 - (NSArray *)map:(id (^) (id obj))block {
+    NSCParameterAssert(block != NULL);
+    
     NSMutableArray *array = [[NSMutableArray alloc] init];
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         id element = block(obj);
@@ -22,6 +24,8 @@
 }
 
 - (NSArray *)filter:(BOOL (^) (id obj))block {
+    NSCParameterAssert(block != NULL);
+    
     NSMutableArray *array = [[NSMutableArray alloc] init];
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         BOOL element = block(obj);
