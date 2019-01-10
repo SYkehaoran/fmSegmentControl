@@ -3,7 +3,7 @@
 //  HXHQT
 //
 //  Created by 柯浩然 on 2017/1/9.
-//  Copyright © 2017年 wangyan. All rights reserved.
+//  Copyright © 2017年 China Asset Management Co., Ltd. All rights reserved.
 //
 
 #import "NSArray+Functional.h"

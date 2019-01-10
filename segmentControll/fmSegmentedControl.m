@@ -144,7 +144,7 @@ static NSInteger const kDefalutSelectedIndex = 0;
         item.tag = i;
         item.text = title;
         item.frame = CGRectMake(i *(kLineWidth + itemWidth), 0, itemWidth, itemHeight);
-        item.textColor = [UIColor blackColor];
+        item.textColor = _titleColor;
         item.textAlignment = NSTextAlignmentCenter;
         item.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemTouchUpInside:)];
@@ -187,6 +187,15 @@ static NSInteger const kDefalutSelectedIndex = 0;
         
         item.font = [UIFont systemFontOfSize:_titleFont];
     }
+}
+
+- (void)setTitleColor:(UIColor *)titleColor {
+    
+    _titleColor = titleColor;
+    [self.sectionItems map:^id(UILabel *obj) {
+        obj.textColor = titleColor;
+        return obj;
+    }];
 }
 
 - (void)setThemeColor:(UIColor *)themeColor {
