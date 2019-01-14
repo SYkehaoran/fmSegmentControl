@@ -9,7 +9,6 @@
 #import "fmSegmentedControl.h"
 #import "NSArray+Functional.h"
 
-static NSInteger const kDefalutSelectedIndex = 0;
 #define kLineWidth 1 / [[UIScreen mainScreen] scale]
 @interface fmSegmentedControl ()
 
@@ -25,18 +24,32 @@ static NSInteger const kDefalutSelectedIndex = 0;
 @end
 @implementation fmSegmentedControl
 
+- (void)awakeFromNib {
+    
+    [super awakeFromNib];
+    [self commonInit];
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-
+        
         [self commonInit];
     }
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame sectionTitles:(NSArray *)sectiontitles {
-   
+    
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -80,19 +93,19 @@ static NSInteger const kDefalutSelectedIndex = 0;
         }completion:^(BOOL finished) {
             self.userInteractionEnabled = YES;
         }];
-
+        
     }else {
         
         self.selectionIndicatorView.frame = [self getIndicatorViewFrameWithSelectedItem];
     }
     
     if (notify) {
-        !self.indexChangeBlock ? : self.indexChangeBlock(index);
+        !self.indexChangeBlock ? : self.indexChangeBlock(index,item.text);
     }
 }
 
 - (void)commonInit {
-
+    
     self.titleFont = 15;
     self.backgroundColor = [UIColor whiteColor];
     
@@ -115,6 +128,10 @@ static NSInteger const kDefalutSelectedIndex = 0;
         return obj != nil && obj.length != 0;
     }];
     
+    if (self.sectionTitles.count == 0) {
+        return;
+    }
+    
     self.sectionItems = [self.sectionItems map:^id(id obj) {
         [obj removeFromSuperview];
         return nil;
@@ -127,14 +144,11 @@ static NSInteger const kDefalutSelectedIndex = 0;
     
     NSMutableArray<UILabel *> *itemArray = [NSMutableArray array];
     self.sectionItems = itemArray;
-
+    
     NSMutableArray<UIView *> *separatorArray = [NSMutableArray array];
     self.sectionSeparators = separatorArray;
     
     CGFloat separatorCount = _sectionTitles.count - 1;
-    
-    CGFloat itemWidth = (self.frame.size.width - kLineWidth * separatorCount) / _sectionTitles.count;
-    CGFloat itemHeight = self.frame.size.height;
     
     for (NSInteger i = 0; i < _sectionTitles.count; i++) {
         
@@ -143,14 +157,12 @@ static NSInteger const kDefalutSelectedIndex = 0;
         
         item.tag = i;
         item.text = title;
-        item.frame = CGRectMake(i *(kLineWidth + itemWidth), 0, itemWidth, itemHeight);
         item.textColor = _titleColor;
         item.textAlignment = NSTextAlignmentCenter;
         item.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemTouchUpInside:)];
         [item addGestureRecognizer:tap];
-      
-      
+        
         [itemArray addObject:item];
         [self addSubview:item];
     };
@@ -159,7 +171,6 @@ static NSInteger const kDefalutSelectedIndex = 0;
         
         UIView *separatorView = [[UIView alloc] init];
         
-        separatorView.frame = CGRectMake(i * kLineWidth + (i + 1) * itemWidth, 0, kLineWidth, itemHeight);
         if (self.sepatatorColor != nil) {
             
             separatorView.backgroundColor = self.sepatatorColor;
@@ -167,11 +178,38 @@ static NSInteger const kDefalutSelectedIndex = 0;
         }
         [separatorArray addObject:separatorView];
     }
+}
+
+- (void)layoutItems {
     
+    CGFloat separatorCount = _sectionTitles.count - 1;
+    
+    CGFloat itemWidth = (self.frame.size.width - kLineWidth * separatorCount) / _sectionTitles.count;
+    CGFloat itemHeight = self.frame.size.height;
+    
+    for (NSInteger i = 0; i < _sectionItems.count; i++) {
+        
+        UILabel *item = _sectionItems[i];
+        item.frame = CGRectMake(i *(kLineWidth + itemWidth), 0, itemWidth, itemHeight);
+    };
+    
+    for (NSInteger i = 0; i < self.sectionSeparators.count; i++) {
+        
+        UIView *separatorView = self.sectionSeparators[i];
+        separatorView.frame = CGRectMake(i * kLineWidth + (i + 1) * itemWidth, 0, kLineWidth, itemHeight);
+    }
+    
+    self.selectionIndicatorView.frame = [self getIndicatorViewFrameWithSelectedItem];
+}
+
+- (void)layoutSubviews {
+    
+    [super layoutSubviews];
+    [self layoutItems];
 }
 
 - (void)itemTouchUpInside:(UIGestureRecognizer *)sender {
-
+    
     [self setSelectedSegmentIndex:sender.view.tag animated:_shouldAnimateUserSelection notify:YES];
 }
 
@@ -210,13 +248,8 @@ static NSInteger const kDefalutSelectedIndex = 0;
     _indicatorPosition = indicatorPosition;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.selectedSegmentIndex = kDefalutSelectedIndex;
-}
-
 - (UIColor *)getSelectedItemColor {
-  return self.indicatorPosition == IndicatorPositionFill ? _fillSelectedTextColor : _themeColor;
+    return self.indicatorPosition == IndicatorPositionFill ? _fillSelectedTextColor : _themeColor;
 }
 
 - (CGRect)getIndicatorViewFrameWithSelectedItem {
@@ -229,7 +262,7 @@ static NSInteger const kDefalutSelectedIndex = 0;
     
     indicatorViewFrame.origin.x = self.selectedLabel.frame.origin.x;
     indicatorViewFrame.size.width = self.selectedLabel.frame.size.width;
-
+    
     switch (_indicatorPosition) {
             
         case IndicatorPositionTop:

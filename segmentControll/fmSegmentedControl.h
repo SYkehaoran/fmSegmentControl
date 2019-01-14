@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, IndicatorPosition) {
     IndicatorPositionBottom,
     IndicatorPositionFill,
 };
-typedef void (^IndexChangeBlock)(NSInteger index);
+typedef void (^IndexChangeBlock)(NSInteger index, NSString *text);
 
 @interface fmSegmentedControl : UIControl
 /// deault is IndicatorPositionTop
